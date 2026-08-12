@@ -1,7 +1,7 @@
 // webpack.common.js
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-
 
 export default {
   entry: "./src/index.js",
@@ -11,6 +11,10 @@ export default {
     clean: true,
   },
   /*Insert plugins */
-
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/template.html",
+    }),
+  ],
   /*Insert modules*/
 };
