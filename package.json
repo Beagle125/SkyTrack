@@ -11,20 +11,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Beagle125/Project-ToDoList.git"
+    "url": "git+https://github.com/Beagle125/SkyTrack.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/Beagle125/Project-ToDoList/issues"
+    "url": "https://github.com/Beagle125/SkyTrack/issues"
   },
-  "homepage": "https://github.com/Beagle125/Project-ToDoList#readme",
+  "homepage": "https://github.com/Beagle125/SkyTrack#readme",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.8.1",
     "globals": "^17.10.0",
+    "html-webpack-plugin": "^5.6.8",
     "prettier": "3.9.6",
     "webpack": "^5.106.2",
     "webpack-cli": "^7.0.2",
