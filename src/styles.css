@@ -1,3 +1,14 @@
 html,
 body {
+  /*Color Pallete*/
+  --backgroundDarkBlue: #25383f;
+  --majorLightBlue: #65dcd5;
+  --minorLightBlue: #d9fff4;
+  --fadedBlue: #3a5763;
+
+  /*Fonts*/
+  --mainFont: Serif /*To be altered to merriweather*/;
+
+  background-color: var(--backgroundDarkBlue);
+  box-sizing: border-box;
 }
