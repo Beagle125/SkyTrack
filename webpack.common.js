@@ -17,4 +17,12 @@ export default {
     }),
   ],
   /*Insert modules*/
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
 };
