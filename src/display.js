@@ -13,6 +13,7 @@ const loadMainUpper = (upperMain) => {
   header.appendChild(track);
 
   const form = document.createElement("form");
+  form.id = "mainForm";
   const input = document.createElement("input");
   input.id = "formInput";
   input.type = "text";
@@ -20,6 +21,7 @@ const loadMainUpper = (upperMain) => {
   input.placeholder = "search a location...";
   const button = document.createElement("button");
   button.type = "submit";
+  button.classList.add("submitBtn");
   const buttonImg = document.createElement("img");
   buttonImg.id = "searchImg";
   buttonImg.src = searchImage;
