@@ -8,13 +8,23 @@ body {
   --darkerFadedBlue: #1b292f;
 
   /*Fonts*/
-  --mainFont: Serif /*To be altered to merriweather*/;
+  --mainFont: "Merriweather" /*To be altered to merriweather*/;
 
   background-color: var(--backgroundDarkBlue);
   box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  width: 100%;
 }
 
 /*general styles*/
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .header {
   color: var(--minorLightBlue);
   font-size: 3rem;
