@@ -1,3 +1,4 @@
 import "./styles.css";
+import { loadMainUpper } from "./display.js";
 
-console.log("hello, world");
+loadMainUpper(document.querySelector("#mainUpper"));
