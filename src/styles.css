@@ -5,10 +5,71 @@ body {
   --majorLightBlue: #65dcd5;
   --minorLightBlue: #d9fff4;
   --fadedBlue: #3a5763;
+  --darkerFadedBlue: #1b292f;
 
   /*Fonts*/
   --mainFont: Serif /*To be altered to merriweather*/;
 
   background-color: var(--backgroundDarkBlue);
   box-sizing: border-box;
+}
+
+/*general styles*/
+.header {
+  color: var(--minorLightBlue);
+  font-size: 3rem;
+}
+
+.highlighted {
+  color: var(--majorLightBlue);
+}
+
+/*mainUpper styles*/
+#mainUpper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  flex-basis: 25%;
+  gap: 4px;
+  width: 100%;
+}
+
+input {
+  background-color: var(--fadedBlue);
+  border: 0;
+  border-radius: 50px 0 0 20px;
+  padding: 8px 1rem 8px 1rem;
+  color: var(--minorLightBlue);
+  width: 25%;
+}
+
+input::placeholder {
+  font-family: var(--mainFont);
+  color: var(--darkerFadedBlue);
+}
+
+button[type="submit"] {
+  background-color: var(--majorLightBlue);
+  border: 0;
+  border-radius: 0 50px 50px 0;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  transform: scale(1.1);
+  filter: brightness(105%);
+}
+
+#searchImg {
+  align-self: center;
+  scale: 0.8;
 }
