@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Merriweather";
+  src:
+    url("fonts/Merriweather-Regular.woff2") format("woff2"),
+    url("fonts/Merriweather-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 html,
 body {
   /*Color Pallete*/
@@ -27,6 +37,7 @@ body {
 
 .header {
   color: var(--minorLightBlue);
+  font-family: var(--mainFont), Serif;
   font-size: 3rem;
 }
 
@@ -48,6 +59,7 @@ form {
   display: flex;
   justify-content: center;
   flex-basis: 25%;
+  font-family: var(--mainFont), Serif;
   gap: 4px;
   width: 100%;
 }
