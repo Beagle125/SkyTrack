@@ -58,20 +58,39 @@ const loadErrorView = (lowerMain, value) => {
     lowerMain.classList.add("active");
 };
 
-const loadInformationView = (lowerMain, weatherData) => {
+const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
   lowerMain.replaceChildren();
+  const upperRow = document.createElement("div");
   const todayInfo = document.createElement("div");
 
   const locationLabel = document.createElement("p");
   const location = weatherData.resolvedAddress;
   locationLabel.textContent =
     location.charAt(0).toUpperCase() + location.slice(1);
-
   todayInfo.appendChild(locationLabel);
-  lowerMain.appendChild(todayInfo);
+
+  const iconTempLabel = document.createElement("div");
+  const tempLabel = document.createElement("p");
+  tempLabel.textContent =
+    weatherData.days[0].temp + tempStringify(tempMeasurement);
+  iconTempLabel.appendChild(tempLabel);
+
+  upperRow.appendChild(todayInfo);
+  upperRow.appendChild(iconTempLabel);
+
+  lowerMain.appendChild(upperRow);
 
   if (!lowerMain.classList.contains("active"))
     lowerMain.classList.add("active");
+};
+
+const tempStringify = (tempMeasurement) => {
+  switch (tempMeasurement) {
+    case "metric":
+      return "°C";
+    default:
+      return "°F";
+  }
 };
 
 export {

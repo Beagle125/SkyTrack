@@ -9,6 +9,7 @@ import {
 const handleSubmit = () => {
   document.addEventListener("submit", (e) => {
     e.preventDefault();
+    const tempMeasurement = "metric";
     if (e.target.id === "mainForm") {
       const location = document.querySelector("input").value;
       openLoadingView(document.querySelector("body"));
@@ -23,6 +24,7 @@ const handleSubmit = () => {
           loadInformationView(
             document.querySelector("#mainLower"),
             weatherData,
+            tempMeasurement,
           );
         } catch (error) {
           console.log("error: " + error);
