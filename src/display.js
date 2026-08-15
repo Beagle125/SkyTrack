@@ -1,4 +1,13 @@
 import searchImage from "../static/search.svg";
+import ClearDayIcon from "../static/ClearDayIcon.svg";
+import ClearNightIcon from "../static/ClearNightIcon.svg";
+import PartlyCloudyDayIcon from "../static/PartlyCloudyDayIcon.svg";
+import PartlyCloudyNightIcon from "../static/PartlyCloudyNightIcon.svg";
+import CloudyIcon from "../static/CloudyIcon.svg";
+import WindIcon from "../static/WindIcon.svg";
+import RainIcon from "../static/RainIcon.svg";
+import FogIcon from "../static/FogIcon.svg";
+import SnowIcon from "../static/SnowIcon.svg";
 
 const loadMainUpper = (upperMain) => {
   const header = document.createElement("div");
@@ -70,13 +79,18 @@ const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
   todayInfo.appendChild(locationLabel);
 
   const iconTempLabel = document.createElement("div");
+
+  const iconImg = document.createElement("img");
+  iconImg.src = iconify(weatherData.days[0].icon);
+  iconTempLabel.appendChild(iconImg);
+
   const tempLabel = document.createElement("p");
   tempLabel.textContent =
     weatherData.days[0].temp + tempStringify(tempMeasurement);
   iconTempLabel.appendChild(tempLabel);
 
   const dayWeatherLabel = document.createElement("p");
-  const todayValue = new Date();
+  const todayValue = new Date(weatherData.days[0].datetime);
   dayWeatherLabel.textContent = `${dayStringify(todayValue.getDay())} | ${weatherData.days[0].conditions}`;
 
   upperRow.appendChild(todayInfo);
@@ -87,6 +101,31 @@ const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
 
   if (!lowerMain.classList.contains("active"))
     lowerMain.classList.add("active");
+};
+
+const iconify = (iconCode) => {
+  switch (iconCode) {
+    case "clear-day":
+      return ClearDayIcon;
+    case "clear-night":
+      return ClearNightIcon;
+    case "partly-cloudy-day":
+      return PartlyCloudyDayIcon;
+    case "partly-cloudy-night":
+      return PartlyCloudyNightIcon;
+    case "cloudy":
+      return CloudyIcon;
+    case "rain":
+      return RainIcon;
+    case "snow":
+      return SnowIcon;
+    case "fog":
+      return FogIcon;
+    case "wind":
+      return WindIcon;
+    default:
+      return ClearDayIcon;
+  }
 };
 
 const tempStringify = (tempMeasurement) => {
