@@ -8,6 +8,15 @@
   font-display: swap;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 html,
 body {
   /*Color Pallete*/
@@ -94,4 +103,39 @@ button[type="submit"]:hover {
 #searchImg {
   align-self: center;
   scale: 0.8;
+}
+
+/* Loading Screen styles */
+#loadingScreen {
+  background-color: black;
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), serif;
+  font-size: 2rem;
+  height: 100%;
+  opacity: 0.8;
+  padding-top: 50%;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+/* mainLower styles*/
+#mainLower {
+  flex: 0;
+}
+
+#mainLower.active {
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+
+/* Error loading styles */
+.errorMessage {
+  animation: fadeIn 600ms 100ms forwards;
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), serif;
+  font-size: 2rem;
+  opacity: 0;
+  text-align: center;
 }
