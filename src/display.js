@@ -54,7 +54,30 @@ const loadErrorView = (lowerMain, value) => {
   errorMessage.textContent = `Unable to find weather data for "${value}". Please enter a valid location.`;
   lowerMain.appendChild(errorMessage);
 
-  lowerMain.classList.add("active");
+  if (!lowerMain.classList.contains("active"))
+    lowerMain.classList.add("active");
 };
 
-export { loadMainUpper, openLoadingView, closeLoadingView, loadErrorView };
+const loadInformationView = (lowerMain, weatherData) => {
+  lowerMain.replaceChildren();
+  const todayInfo = document.createElement("div");
+
+  const locationLabel = document.createElement("p");
+  const location = weatherData.resolvedAddress;
+  locationLabel.textContent =
+    location.charAt(0).toUpperCase() + location.slice(1);
+
+  todayInfo.appendChild(locationLabel);
+  lowerMain.appendChild(todayInfo);
+
+  if (!lowerMain.classList.contains("active"))
+    lowerMain.classList.add("active");
+};
+
+export {
+  loadMainUpper,
+  openLoadingView,
+  closeLoadingView,
+  loadErrorView,
+  loadInformationView,
+};

@@ -1,5 +1,10 @@
 import { getWeatherData } from "./model.js";
-import { openLoadingView, closeLoadingView, loadErrorView } from "./display.js";
+import {
+  openLoadingView,
+  closeLoadingView,
+  loadErrorView,
+  loadInformationView,
+} from "./display.js";
 
 const handleSubmit = () => {
   document.addEventListener("submit", (e) => {
@@ -10,7 +15,15 @@ const handleSubmit = () => {
       (async () => {
         try {
           const weatherData = await getWeatherData(location);
+          console.log(
+            `location: ${JSON.stringify(weatherData.resolvedAddress)}`,
+          );
           console.log("data: " + JSON.stringify(weatherData));
+
+          loadInformationView(
+            document.querySelector("#mainLower"),
+            weatherData,
+          );
         } catch (error) {
           console.log("error: " + error);
           loadErrorView(document.querySelector("#mainLower"), location);
