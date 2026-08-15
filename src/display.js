@@ -34,4 +34,27 @@ const loadMainUpper = (upperMain) => {
   upperMain.appendChild(form);
 };
 
-export { loadMainUpper };
+const openLoadingView = (body) => {
+  const loadingScreen = document.createElement("div");
+  loadingScreen.id = "loadingScreen";
+  loadingScreen.textContent = "Loading data...";
+  body.appendChild(loadingScreen);
+};
+
+const closeLoadingView = () => {
+  const loadingScreen = document.querySelector("#loadingScreen");
+
+  if (loadingScreen != null) loadingScreen.remove();
+};
+
+const loadErrorView = (lowerMain, value) => {
+  lowerMain.replaceChildren();
+  const errorMessage = document.createElement("div");
+  errorMessage.classList.add("errorMessage");
+  errorMessage.textContent = `Unable to find weather data for "${value}". Please enter a valid location.`;
+  lowerMain.appendChild(errorMessage);
+
+  lowerMain.classList.add("active");
+};
+
+export { loadMainUpper, openLoadingView, closeLoadingView, loadErrorView };
