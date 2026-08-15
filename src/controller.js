@@ -15,7 +15,7 @@ const handleSubmit = () => {
       openLoadingView(document.querySelector("body"));
       (async () => {
         try {
-          const weatherData = await getWeatherData(location);
+          const weatherData = await getWeatherData(location, tempMeasurement);
           console.log(
             `location: ${JSON.stringify(weatherData.resolvedAddress)}`,
           );
