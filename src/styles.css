@@ -50,6 +50,12 @@ body {
   font-size: 3rem;
 }
 
+.subHeader {
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), Serif;
+  font-size: 2rem;
+}
+
 .highlighted {
   color: var(--majorLightBlue);
 }
@@ -128,6 +134,8 @@ button[type="submit"]:hover {
   align-items: center;
   display: flex;
   flex: 1;
+  justify-content: center;
+  width: 100%;
 }
 
 /* Error loading styles */
@@ -137,5 +145,49 @@ button[type="submit"]:hover {
   font-family: var(--mainFont), serif;
   font-size: 2rem;
   opacity: 0;
+  text-align: center;
+}
+
+/*styles of the display of info for today*/
+#lowerUpperRow {
+  animation: fadeIn 600ms 100ms forwards;
+  opacity: 0;
+  width: 100%;
+}
+
+.infoComponent {
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  justify-content: stretch;
+  width: 100%;
+}
+
+.infoComponent > .subHeader {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.iconTempContainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  height: auto;
+}
+
+.mainIcon {
+  scale: 2;
+}
+
+.mainTemp {
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), serif;
+  font-size: 3rem;
+}
+
+.infoComponent > .dayWeatherLabel {
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), serif;
+  font-size: 1rem;
   text-align: center;
 }

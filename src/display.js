@@ -70,32 +70,41 @@ const loadErrorView = (lowerMain, value) => {
 const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
   lowerMain.replaceChildren();
   const upperRow = document.createElement("div");
+  upperRow.id = "lowerUpperRow";
   const todayInfo = document.createElement("div");
+  todayInfo.classList.add("infoComponent");
 
   const locationLabel = document.createElement("p");
+  locationLabel.classList.add("subHeader");
   const location = weatherData.resolvedAddress;
   locationLabel.textContent =
     location.charAt(0).toUpperCase() + location.slice(1);
   todayInfo.appendChild(locationLabel);
 
   const iconTempLabel = document.createElement("div");
+  iconTempLabel.classList.add("iconTempContainer");
 
   const iconImg = document.createElement("img");
+  iconImg.classList.add("mainIcon");
   iconImg.src = iconify(weatherData.days[0].icon);
   iconTempLabel.appendChild(iconImg);
 
   const tempLabel = document.createElement("p");
+  tempLabel.classList.add("mainTemp");
   tempLabel.textContent =
     weatherData.days[0].temp + tempStringify(tempMeasurement);
   iconTempLabel.appendChild(tempLabel);
 
   const dayWeatherLabel = document.createElement("p");
+  dayWeatherLabel.classList.add("dayWeatherLabel");
   const todayValue = new Date(weatherData.days[0].datetime);
   dayWeatherLabel.textContent = `${dayStringify(todayValue.getDay())} | ${weatherData.days[0].conditions}`;
 
+  todayInfo.appendChild(locationLabel);
+  todayInfo.appendChild(iconTempLabel);
+  todayInfo.appendChild(dayWeatherLabel);
+
   upperRow.appendChild(todayInfo);
-  upperRow.appendChild(iconTempLabel);
-  upperRow.appendChild(dayWeatherLabel);
 
   lowerMain.appendChild(upperRow);
 
