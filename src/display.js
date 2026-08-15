@@ -75,8 +75,13 @@ const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
     weatherData.days[0].temp + tempStringify(tempMeasurement);
   iconTempLabel.appendChild(tempLabel);
 
+  const dayWeatherLabel = document.createElement("p");
+  const todayValue = new Date();
+  dayWeatherLabel.textContent = `${dayStringify(todayValue.getDay())} | ${weatherData.days[0].conditions}`;
+
   upperRow.appendChild(todayInfo);
   upperRow.appendChild(iconTempLabel);
+  upperRow.appendChild(dayWeatherLabel);
 
   lowerMain.appendChild(upperRow);
 
@@ -90,6 +95,25 @@ const tempStringify = (tempMeasurement) => {
       return "°C";
     default:
       return "°F";
+  }
+};
+
+const dayStringify = (numDay) => {
+  switch (numDay) {
+    case 0:
+      return "Sunday";
+    case 1:
+      return "Monday";
+    case 2:
+      return "Tuesday";
+    case 3:
+      return "Wednesday";
+    case 4:
+      return "Thursday";
+    case 5:
+      return "Friday";
+    default:
+      return "Saturday";
   }
 };
 
