@@ -46,7 +46,9 @@ const loadMainUpper = (upperMain) => {
 const openLoadingView = (body) => {
   const loadingScreen = document.createElement("div");
   loadingScreen.id = "loadingScreen";
-  loadingScreen.textContent = "Loading data...";
+  const loadingIcon = document.createElement("div");
+  loadingIcon.id = "loadingIcon";
+  loadingScreen.appendChild(loadingIcon);
   body.appendChild(loadingScreen);
 };
 

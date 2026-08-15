@@ -17,6 +17,15 @@
   }
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 html,
 body {
   /*Color Pallete*/
@@ -113,16 +122,23 @@ button[type="submit"]:hover {
 
 /* Loading Screen styles */
 #loadingScreen {
+  align-items: center;
   background-color: black;
-  color: var(--minorLightBlue);
-  font-family: var(--mainFont), serif;
-  font-size: 2rem;
+  display: flex;
   height: 100%;
-  opacity: 0.8;
-  padding-top: 50%;
+  justify-content: center;
   position: absolute;
-  text-align: center;
+  opacity: 0.6;
   width: 100%;
+}
+
+#loadingIcon {
+  animation: spin 2s linear infinite;
+  border: 8px solid var(--fadedBlue);
+  border-top: 8px solid var(--majorLightBlue);
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
 }
 
 /* mainLower styles*/
