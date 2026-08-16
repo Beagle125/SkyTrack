@@ -110,8 +110,69 @@ const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
 
   lowerMain.appendChild(upperRow);
 
+  // lower row loading
+  const lowerRow = document.createElement("div");
+  lowerRow.id = "lowerLowerRow";
+
+  const fiveDayForecastContainer = document.createElement("div");
+  fiveDayForecastContainer.id = "fiveDayForecastContainer";
+  const fiveDayForecastHeader = document.createElement("p");
+  fiveDayForecastHeader.classList.add("subHeader");
+  fiveDayForecastHeader.textContent = "5 days Forecast";
+  const fiveDayForecastElements = document.createElement("div");
+  fiveDayForecastElements.id = "lowerInfoContainer";
+  populateFiveDays(fiveDayForecastElements, weatherData, tempMeasurement);
+  fiveDayForecastContainer.appendChild(fiveDayForecastHeader);
+  fiveDayForecastContainer.appendChild(fiveDayForecastElements);
+
+  const highlightContainer = document.createElement("div");
+  highlightContainer.id = "highlightContainer";
+  const highlightHeader = document.createElement("p");
+  highlightHeader.classList.add("subHeader");
+  highlightHeader.textContent = "Highlights:";
+  const highlightStatsContainer = document.createElement("div");
+  const precipitation = document.createElement("p");
+  precipitation.textContent = `Precipitation: ${weatherData.days[0].precip}%`;
+  const humidity = document.createElement("p");
+  humidity.textContent = `Humidity: ${weatherData.days[0].humidity}%`;
+  const windspeed = document.createElement("p");
+  windspeed.textContent = `Windspeed: ${weatherData.days[0].windspeed}km/h`;
+  highlightStatsContainer.appendChild(precipitation);
+  highlightStatsContainer.appendChild(humidity);
+  highlightStatsContainer.appendChild(windspeed);
+  highlightContainer.appendChild(highlightHeader);
+  highlightContainer.appendChild(highlightStatsContainer);
+
+  lowerRow.appendChild(fiveDayForecastContainer);
+  lowerRow.appendChild(highlightContainer);
+  lowerMain.appendChild(lowerRow);
+
   if (!lowerMain.classList.contains("active"))
     lowerMain.classList.add("active");
+};
+
+const populateFiveDays = (mainContainer, weatherData, tempMeasurement) => {
+  const forecast = 5;
+  for (let i = 1; i <= forecast; i++) {
+    const component = document.createElement("div");
+    component.classList.add("infoComponent");
+
+    const day = document.createElement("p");
+    const todayValue = new Date(weatherData.days[i].datetime);
+    day.textContent = `${dayStringify(todayValue.getDay())}`;
+    component.appendChild(day);
+
+    const icon = document.createElement("img");
+    icon.src = iconify(weatherData.days[i].icon);
+    component.appendChild(icon);
+
+    const temp = document.createElement("p");
+    temp.textContent =
+      weatherData.days[i].temp + tempStringify(tempMeasurement);
+    component.appendChild(temp);
+
+    mainContainer.appendChild(component);
+  }
 };
 
 const iconify = (iconCode) => {
