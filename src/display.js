@@ -94,6 +94,8 @@ const loadUpperRow = (upperRow, weatherData, tempMeasurement, index) => {
   const todayInfo = document.createElement("div");
   todayInfo.classList.add("infoComponent");
 
+  loadTempBtn(upperRow, tempMeasurement);
+
   const locationLabel = document.createElement("p");
   locationLabel.classList.add("subHeader");
   const location = weatherData.resolvedAddress;
@@ -160,6 +162,13 @@ const loadLowerRow = (lowerRow, weatherData, tempMeasurement, index) => {
 
   lowerRow.appendChild(fiveDayForecastContainer);
   lowerRow.appendChild(highlightContainer);
+};
+
+const loadTempBtn = (upperRow, tempMeasurement) => {
+  const btn = document.createElement("button");
+  btn.id = "tempButton";
+  btn.textContent = tempStringify(tempMeasurement);
+  upperRow.appendChild(btn);
 };
 
 const populateFiveDays = (mainContainer, weatherData, tempMeasurement) => {
