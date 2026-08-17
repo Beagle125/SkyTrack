@@ -1,4 +1,8 @@
-import { getWeatherData } from "./model.js";
+import {
+  getWeatherData,
+  convertToCelcius,
+  convertToFarenheit,
+} from "./model.js";
 import {
   openLoadingView,
   closeLoadingView,
@@ -10,12 +14,12 @@ import {
 
 // declare a global variable weatherData to be accessed by other event handlers
 let weatherData;
-let tempMeasurement;
+let tempMeasurement = "metric";
+let index = 0;
 
 const handleSubmit = () => {
   document.addEventListener("submit", (e) => {
     e.preventDefault();
-    tempMeasurement = "metric"; // to be changed
     if (e.target.id === "mainForm") {
       const location = document.querySelector("input").value;
       openLoadingView(document.querySelector("body"));
@@ -43,7 +47,29 @@ const handleSubmit = () => {
 
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("clickableComponents")) {
-      const index = e.target.id;
+      index = e.target.id;
+      loadUpperRow(
+        document.querySelector("#lowerUpperRow"),
+        weatherData,
+        tempMeasurement,
+        index,
+      );
+
+      loadLowerRow(
+        document.querySelector("#lowerLowerRow"),
+        weatherData,
+        tempMeasurement,
+        index,
+      );
+    } else if (e.target.id == "tempButton") {
+      if (tempMeasurement === "metric") {
+        tempMeasurement = "us";
+        convertToFarenheit(weatherData.days);
+      } else {
+        tempMeasurement = "metric";
+        convertToCelcius(weatherData.days);
+      }
+
       loadUpperRow(
         document.querySelector("#lowerUpperRow"),
         weatherData,

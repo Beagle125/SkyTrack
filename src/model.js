@@ -13,4 +13,18 @@ const getWeatherData = async (location, tempMeasurement) => {
   return weatherData;
 };
 
-export { getWeatherData };
+const convertToCelcius = (days) => {
+  days.forEach((day) => {
+    const celcius = (day.temp - 32) / 1.8;
+    day.temp = celcius.toFixed(1);
+  });
+};
+
+const convertToFarenheit = (days) => {
+  days.forEach((day) => {
+    const farenheit = day.temp * 1.8 + 32;
+    day.temp = farenheit.toFixed(1);
+  });
+};
+
+export { getWeatherData, convertToCelcius, convertToFarenheit };
