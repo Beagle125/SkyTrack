@@ -250,6 +250,14 @@ button[type="submit"]:hover {
   padding: 0;
   margin: 0;
   scale: 0.8;
+  transition: all 0.3s ease;
+}
+
+#lowerInfoContainer .infoComponent:hover {
+  background-color: var(--darkerFadedBlue);
+  border-radius: 10px;
+  filter: brightness(1.2);
+  scale: 1;
 }
 
 #lowerInfoContainer .infoComponent * {
@@ -265,4 +273,9 @@ button[type="submit"]:hover {
 #highlightContainer > div p {
   color: var(--minorLightBlue);
   font-family: var(--mainFont), serif;
+}
+
+/* Disable events for img */
+img {
+  pointer-events: none;
 }
