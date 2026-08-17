@@ -70,17 +70,18 @@ const loadErrorView = (lowerMain, value) => {
 };
 
 const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
+  // upper row loading
   lowerMain.replaceChildren();
   const upperRow = document.createElement("div");
   upperRow.id = "lowerUpperRow";
-  loadUpperRow(upperRow, weatherData, tempMeasurement);
+  loadUpperRow(upperRow, weatherData, tempMeasurement, 0);
 
   lowerMain.appendChild(upperRow);
 
   // lower row loading
   const lowerRow = document.createElement("div");
   lowerRow.id = "lowerLowerRow";
-  loadLowerRow(lowerRow, weatherData, tempMeasurement);
+  loadLowerRow(lowerRow, weatherData, tempMeasurement, 0);
 
   lowerMain.appendChild(lowerRow);
 
@@ -88,7 +89,7 @@ const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
     lowerMain.classList.add("active");
 };
 
-const loadUpperRow = (upperRow, weatherData, tempMeasurement) => {
+const loadUpperRow = (upperRow, weatherData, tempMeasurement, index) => {
   upperRow.replaceChildren();
   const todayInfo = document.createElement("div");
   todayInfo.classList.add("infoComponent");
@@ -105,19 +106,19 @@ const loadUpperRow = (upperRow, weatherData, tempMeasurement) => {
 
   const iconImg = document.createElement("img");
   iconImg.classList.add("mainIcon");
-  iconImg.src = iconify(weatherData.days[0].icon);
+  iconImg.src = iconify(weatherData.days[index].icon);
   iconTempLabel.appendChild(iconImg);
 
   const tempLabel = document.createElement("p");
   tempLabel.classList.add("mainTemp");
   tempLabel.textContent =
-    weatherData.days[0].temp + tempStringify(tempMeasurement);
+    weatherData.days[index].temp + tempStringify(tempMeasurement);
   iconTempLabel.appendChild(tempLabel);
 
   const dayWeatherLabel = document.createElement("p");
   dayWeatherLabel.classList.add("dayWeatherLabel");
-  const todayValue = new Date(weatherData.days[0].datetime);
-  dayWeatherLabel.textContent = `${dayStringify(todayValue.getDay())} | ${weatherData.days[0].conditions}`;
+  const todayValue = new Date(weatherData.days[index].datetime);
+  dayWeatherLabel.textContent = `${dayStringify(todayValue.getDay())} | ${weatherData.days[index].conditions}`;
 
   todayInfo.appendChild(locationLabel);
   todayInfo.appendChild(iconTempLabel);
@@ -126,7 +127,7 @@ const loadUpperRow = (upperRow, weatherData, tempMeasurement) => {
   upperRow.appendChild(todayInfo);
 };
 
-const loadLowerRow = (lowerRow, weatherData, tempMeasurement) => {
+const loadLowerRow = (lowerRow, weatherData, tempMeasurement, index) => {
   lowerRow.replaceChildren();
   const fiveDayForecastContainer = document.createElement("div");
   fiveDayForecastContainer.id = "fiveDayForecastContainer";
@@ -146,11 +147,11 @@ const loadLowerRow = (lowerRow, weatherData, tempMeasurement) => {
   highlightHeader.textContent = "Highlights:";
   const highlightStatsContainer = document.createElement("div");
   const precipitation = document.createElement("p");
-  precipitation.textContent = `Precipitation: ${weatherData.days[0].precip}%`;
+  precipitation.textContent = `Precipitation: ${weatherData.days[index].precip}%`;
   const humidity = document.createElement("p");
-  humidity.textContent = `Humidity: ${weatherData.days[0].humidity}%`;
+  humidity.textContent = `Humidity: ${weatherData.days[index].humidity}%`;
   const windspeed = document.createElement("p");
-  windspeed.textContent = `Windspeed: ${weatherData.days[0].windspeed}km/h`;
+  windspeed.textContent = `Windspeed: ${weatherData.days[index].windspeed}km/h`;
   highlightStatsContainer.appendChild(precipitation);
   highlightStatsContainer.appendChild(humidity);
   highlightStatsContainer.appendChild(windspeed);
@@ -166,6 +167,8 @@ const populateFiveDays = (mainContainer, weatherData, tempMeasurement) => {
   for (let i = 0; i <= forecast; i++) {
     const component = document.createElement("div");
     component.classList.add("infoComponent");
+    component.classList.add("clickableComponents");
+    component.id = i;
 
     const day = document.createElement("p");
     const todayValue = new Date(weatherData.days[i].datetime);
@@ -244,4 +247,6 @@ export {
   closeLoadingView,
   loadErrorView,
   loadInformationView,
+  loadUpperRow,
+  loadLowerRow,
 };
