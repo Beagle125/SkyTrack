@@ -13,7 +13,7 @@ const loadMainUpper = (upperMain) => {
   const header = document.createElement("div");
   const sky = document.createElement("span");
   const track = document.createElement("span");
-  sky.textContent = "Skies";
+  sky.textContent = "Sky";
   track.textContent = "Track";
   header.classList.add("header");
   sky.classList.add("highlighted");
