@@ -73,6 +73,23 @@ const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
   lowerMain.replaceChildren();
   const upperRow = document.createElement("div");
   upperRow.id = "lowerUpperRow";
+  loadUpperRow(upperRow, weatherData, tempMeasurement);
+
+  lowerMain.appendChild(upperRow);
+
+  // lower row loading
+  const lowerRow = document.createElement("div");
+  lowerRow.id = "lowerLowerRow";
+  loadLowerRow(lowerRow, weatherData, tempMeasurement);
+
+  lowerMain.appendChild(lowerRow);
+
+  if (!lowerMain.classList.contains("active"))
+    lowerMain.classList.add("active");
+};
+
+const loadUpperRow = (upperRow, weatherData, tempMeasurement) => {
+  upperRow.replaceChildren();
   const todayInfo = document.createElement("div");
   todayInfo.classList.add("infoComponent");
 
@@ -107,18 +124,15 @@ const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
   todayInfo.appendChild(dayWeatherLabel);
 
   upperRow.appendChild(todayInfo);
+};
 
-  lowerMain.appendChild(upperRow);
-
-  // lower row loading
-  const lowerRow = document.createElement("div");
-  lowerRow.id = "lowerLowerRow";
-
+const loadLowerRow = (lowerRow, weatherData, tempMeasurement) => {
+  lowerRow.replaceChildren();
   const fiveDayForecastContainer = document.createElement("div");
   fiveDayForecastContainer.id = "fiveDayForecastContainer";
   const fiveDayForecastHeader = document.createElement("p");
   fiveDayForecastHeader.classList.add("subHeader");
-  fiveDayForecastHeader.textContent = "5 days Forecast";
+  fiveDayForecastHeader.textContent = "6 days Forecast";
   const fiveDayForecastElements = document.createElement("div");
   fiveDayForecastElements.id = "lowerInfoContainer";
   populateFiveDays(fiveDayForecastElements, weatherData, tempMeasurement);
@@ -145,15 +159,11 @@ const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
 
   lowerRow.appendChild(fiveDayForecastContainer);
   lowerRow.appendChild(highlightContainer);
-  lowerMain.appendChild(lowerRow);
-
-  if (!lowerMain.classList.contains("active"))
-    lowerMain.classList.add("active");
 };
 
 const populateFiveDays = (mainContainer, weatherData, tempMeasurement) => {
   const forecast = 5;
-  for (let i = 1; i <= forecast; i++) {
+  for (let i = 0; i <= forecast; i++) {
     const component = document.createElement("div");
     component.classList.add("infoComponent");
 
